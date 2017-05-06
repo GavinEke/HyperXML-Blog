@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.png">
 
-    <title>Gavin Eke | Home</title>
+    <title>Gavin Eke | The battle of legitimate emails and spam</title>
 
     <!-- Core CSS -->
     <link href="/css/tether.min.css" rel="stylesheet">
@@ -22,8 +22,9 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="nav blog-nav">
-          <a class="nav-link active" href="/">Home</a>
+          <a class="nav-link " href="/">Home</a>
           <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link active" href="#">Posts</a>
         </nav>
       </div>
     </div>
@@ -59,9 +60,26 @@
         <div id="blog-main" class="col-sm-8 blog-main">
 
             <noscript>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</noscript>
+            
+            Recently I have been having a constant battle between allowing legitimate emails to be delivered and blocking spam emails and the problem starts with companies setting up their mail servers incorrectly. <a href="https://tools.ietf.org/html/rfc5321">RFC 5321</a> states how mail should be setup but in this post I am going to focus RDNS and SPF as it seems this is where many companies are going wrong.
+            <h2>RDNS - Reverse DNS</h2>
+            The IP address of your SMTP server that is sending emails should have a PTR record with valid, meaningful, non-generic domain. Eg.
+            <ul>
+              <li>IP - 123.123.123.123 | PTR - mail.example.com</li>
+              <li>A - mail.example.com | IP - 123.123.123.123</li>
+            </ul>
+            If the IP address emails are being sent from is missing a PTR record or has a invalid domain name then emails should be and will be rejected by most email systems. You can check your PTR record on <a href="https://mxtoolbox.com/ReverseLookup.aspx">MX Toolbox</a> to make sure the IP has a valid domain name.
+
+            &nbsp;
+            <h2>SPF - Sender Policy Framework</h2>
+            SPF is not required to be setup to send emails but it is recommended as it helps stop spam but if this is not setup correctly you will find your own emails being blocked. SPF records are designed to tell emails servers which IP addresses should be allowed to send emails and if the IP address sending the email does not match it should be rejected. You must know all public IP addresses your email is being sent from which is most cases will be the IP of your MX record, the website <a href="http://www.spfwizard.net/">SPF Wizard</a> can be helpful in setting this record up.
+
+            &nbsp;
+            <h3>Conclusion</h3>
+            The most important thing to take away from this is if you don't know what you're doing pay for the services of a professional and also look at hosting your email externally with Office 365 or Google Apps because if you don't you might end up with emails being blocked and never getting to the person you want them to go to.
 
         </div><!-- /.blog-main -->
-
+        
         <div id ="sidebar" class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About Gavin</h4>
@@ -107,7 +125,7 @@
     <!-- Custom Blog Script by Gavin Eke -->
     <script src="/js/loadXMLData.js"></script>
     <script src="/js/specialheader.js"></script>
-    <script src="/js/xmlblog.js"></script>
+    <script src="/js/xmlposts.js"></script>
   
 
 </body></html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.png">
+
+    <title>Gavin Eke | Backup WordPress to Mega</title>
+
+    <!-- Core CSS -->
+    <link href="/css/tether.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/blog.css" rel="stylesheet">
+    </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="/">Home</a>
+          <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link active" href="#">Posts</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="blog-header">
+      <div class="container">
+        <table border="0">
+            <tr>
+                <td><img src="/images/logo.png"></td>
+                <td>&nbsp&nbsp&nbsp</td>
+                <td><h1 class="blog-title">Gavin Eke</h1><p class="lead blog-description">Get-Command | Get-Random | Get-Help</p></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+    
+    <div class="special-header">
+      <div class="container">
+        <table border="0">
+            <tr>
+                <td><img class="logo" src="/images/logo.png"></td>
+                <td>&nbsp&nbsp&nbsp</td>
+                <td><br /><h2 class="special-blog-title">Gavin Eke</h2><p class="special-blog-description">Get-Command | Get-Random | Get-Help</p></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div id="blog-main" class="col-sm-8 blog-main">
+
+            <noscript>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</noscript>
+            
+            <a title="World Backup Day" href="http://www.worldbackupday.com" target="_blank">World Backup Day</a> is this Tuesday (March 31st) and I realized that I have not been regularly backing up my website since I have created the website and as such I wrote a script that will backup the database and files as per below
+            <pre class="lang:sh decode:true " title="WP-Backup.sh">#!/usr/bin/env bash
+            # WP-Backup - Creates a Backup of your WordPress database and files and stores them to your Mega.co.nz cloud storage.
+            # Author: Gavin Eke | Twitter: @gavineke | GitHub: https://github.com/GavinEke | Website: https://gavineke.com
+
+            # Dependencies: mailutils, megatools
+            # Change the variables below to suit your environment
+            WP_FOLDER="/var/www/html"
+            BACKUP_FOLDER="."
+            DATE=$(date +%Y-%m-%d)
+            LOG="${BACKUP_FOLDER}/wp-backup.log"
+            EMAIL="youremail@yourhost.com"
+            MEGA_BACKUP_DIR="/Root/WebsiteBackup"
+
+            echo "WordPress Backup Log ${DATE}" &gt; ${LOG}
+            echo "" &gt;&gt; ${LOG}
+
+            if [ -z ${WP_FOLDER} ] || [ -z ${BACKUP_FOLDER} ]; then
+              echo "Cannot find ${WP_Folder} and/or ${BACKUP_FOLDER}" &gt;&gt; ${LOG}
+              exit 1
+            fi
+
+            # check if it looks like wordpress installation
+            WP_CONFIG="${WP_FOLDER}/wp-config.php"
+
+            if ! test -f ${WP_CONFIG}; then
+              echo "ERROR: Cannot detect WordPress installation here... Exiting" &gt;&gt; ${LOG}
+              exit 1
+            fi
+
+            # get the database connection
+            DB_NAME=$(grep -E "^define('DB_NAME'" ${WP_CONFIG} | cut -d"'" -f4)
+            DB_USER=$(grep -E "^define('DB_USER'" ${WP_CONFIG} | cut -d"'" -f4)
+            DB_PASSWORD=$(grep -E "^define('DB_PASSWORD'" ${WP_CONFIG} | cut -d"'" -f4)
+            DB_HOST=$(grep -E "^define('DB_HOST'" ${WP_CONFIG} | cut -d"'" -f4)
+
+            # doing the backup
+            mysqldump ${DB_NAME} -u${DB_USER} -p${DB_PASSWORD} -h${DB_HOST} | gzip &gt; ${BACKUP_FOLDER}/sitedb-${DATE}.gz;
+
+            if [ $? -ne 0 ]; then
+              echo "ERROR: Couldn't dump your database. Check your permissions" &gt;&gt; ${LOG}
+              exit 1
+            fi
+
+            tar -zcf ${BACKUP_FOLDER}/sitefiles-${DATE}.tar.gz  ${WP_FOLDER}/  &gt;/dev/null 2&gt;&amp;1
+
+            if [ $? -ne 0 ]; then
+              echo "ERROR: Couldn't backup your WordPress directory..." &gt;&gt; ${LOG}
+              exit 1
+            fi
+
+            # upload db to Mega
+            megaput --no-progress --path ${MEGA_BACKUP_DIR}/sitedb-${DATE}.gz ${BACKUP_FOLDER}/sitedb-${DATE}.gz &gt;/dev/null 2&gt;&amp;1
+
+            if [ $? -ne 0 ]; then
+              echo "ERROR: Couldn't upload website database to Mega" &gt;&gt; ${LOG}
+              exit 1
+            fi
+
+            # upload site files to Mega
+            megaput --no-progress --path ${MEGA_BACKUP_DIR}/sitefiles-${DATE}.tar.gz ${BACKUP_FOLDER}/sitefiles-${DATE}.tar.gz &gt;/dev/null 2&gt;&amp;1
+
+            if [ $? -ne 0 ]; then
+              echo "ERROR: Couldn't upload website files to Mega" &gt;&gt; ${LOG}
+              exit 1
+            fi
+
+            echo "Website Backup Completed Successfully" &gt;&gt; ${LOG}
+            echo "" &gt;&gt; ${LOG}
+            echo "$(megadf --human)" &gt;&gt; ${LOG}
+            echo "" &gt;&gt; ${LOG}
+            echo "$(megals ${MEGA_BACKUP_DIR})" &gt;&gt; ${LOG}
+
+            # email log
+            cat ${LOG} | mail -s "Website Backup Successful" ${EMAIL}</pre>
+            <a title="GavinEke GitHub | WP-Backup" href="https://github.com/GavinEke/WP-Backup/" target="_blank">https://github.com/GavinEke/WP-Backup/</a>
+
+            <!--more-->
+
+            The script works as expected and since <a title="Mega" href="https://mega.co.nz" target="_blank">Mega</a> gives you 50GB free storage it is able to provide me with multiple copies of the backup so I can restore from multiple points in time if required.
+
+            I could have also used the automatic backup service from VPS host Binary Lane but I had already went over my budget on providing a high performance server but this might be a better option for you if you can afford it as it will backup everything including apache and postfix configuration changes that may have been applied.
+
+            Feel free to use, share, modify this script and remember to backup and spread the word to family and friends the importance of backing up on <a title="World Backup Day" href="http://www.worldbackupday.com/" target="_blank">World Backup Day</a> (March 31st).
+
+        </div><!-- /.blog-main -->
+        
+        <div id ="sidebar" class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About Gavin</h4>
+            <p>I am a PowerShell enthusiast.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Posts</h4>
+            <ol id="posts-list" class="list-unstyled">
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://github.com/GavinEke">GitHub</a></li>
+              <li><a href="https://twitter.com/GavinEke">Twitter</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer id="footer-hidden" class="blog-footer">
+      <p>&copy 2016 Gavin Eke.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+    <footer id="footer" class="blog-footer">
+      <p>&copy 2016 Gavin Eke.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+
+    <!-- Core JavaScript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/tether.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Custom Blog Script by Gavin Eke -->
+    <script src="/js/loadXMLData.js"></script>
+    <script src="/js/specialheader.js"></script>
+    <script src="/js/xmlposts.js"></script>
+  
+
+</body></html>

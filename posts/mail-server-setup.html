@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.png">
+
+    <title>Gavin Eke | Mail Server Setup</title>
+
+    <!-- Core CSS -->
+    <link href="/css/tether.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/blog.css" rel="stylesheet">
+    </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="/">Home</a>
+          <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link active" href="#">Posts</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="blog-header">
+      <div class="container">
+        <table border="0">
+            <tr>
+                <td><img src="/images/logo.png"></td>
+                <td>&nbsp&nbsp&nbsp</td>
+                <td><h1 class="blog-title">Gavin Eke</h1><p class="lead blog-description">Get-Command | Get-Random | Get-Help</p></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+    
+    <div class="special-header">
+      <div class="container">
+        <table border="0">
+            <tr>
+                <td><img class="logo" src="/images/logo.png"></td>
+                <td>&nbsp&nbsp&nbsp</td>
+                <td><br /><h2 class="special-blog-title">Gavin Eke</h2><p class="special-blog-description">Get-Command | Get-Random | Get-Help</p></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div id="blog-main" class="col-sm-8 blog-main">
+
+            <noscript>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</noscript>
+            
+            Today’s post will be extending from the first article I wrote “<a href="https://gavineke.com/posts/web-server-setup-pt1.html" target="_blank">Web Server Setup</a>” as we are now going to discuss Mail Server Setup but unlike the previous article this will not be a technical guide, it will talk about what was implemented and why the solution was not appropriate.
+
+            For the last year I have been using Exchange Online to handle all my emails but as the service is now up for renewal I decided to investigate if another solution would better fit my requirements. The requirements are as follows:
+            <ul>
+              <li>Accessibility – The solution needs to allow me to connect from Outlook, Web Mail and from a smartphone.</li>
+              <li>Management – The solution should be simple to manage and not require a complex setup.</li>
+              <li>Security – The solution should be secure and have the ability to provide Anti-Virus/Anti-Spam capability.</li>
+              <li>Cost – The solution should not cost more than the current cost of Exchange Online.</li>
+            </ul>
+            <!--more-->
+
+            The first thing to come to mind was to use my current server that hosts this website as it already can send and receive emails due to postfix being installed during the initial setup, but the only way to access the emails is to SSH into the server which is not practical and as such I decided to find a package that allowed my current environment to use the IMAP protocol which was the most common method of connecting to emails prior to Exchange ActiveSync.
+
+            After researching popular open-source IMAP servers my first result was a software package called Dovecot, which was compatible with Ubuntu and postfix so I backed up my server and began to install Dovecot. I tested the IMAP server setup was working by changing the MX records from Exchange Online to point to my server and then connected my Microsoft Outlook client and phone and sent a test message and everything worked perfectly. Next, I needed to setup webmail for the times that I would like to access my emails from a public computer. Roundcube became the choice of the webmail solution as it was highly recommended and it features an easy to use UI. The final item was setting up Anti-Virus/Anti-Spam which was harder then I was expecting but after following this guide <a href="https://help.ubuntu.com/lts/serverguide/mail-filtering.html" target="_blank">https://help.ubuntu.com/lts/serverguide/mail-filtering.html</a> I was able to set it up.
+
+            The system was now fully setup and I started doing some load tests which it quickly became apparent that with the extra processing of mail filter that the system required more resource if I was going to continue. I had previously downscaled my server as explained in this post <a href="https://gavineke.com/2015/04/26/website-updates/" target="_blank">https://gavineke.com/2015/04/26/website-updates/</a> but as the resources were now required I up-scaled the server to provide enough performance for the system to run efficiently. With the extra processing power in place the system was working as expected and could handle the load but 1 issue I come across which I did not consider was that Exchange is groupware meaning it does not just provide Email but also management of Calendar and Contacts.
+
+            With the testing fully completed, the evaluation is as follows:
+            <ul>
+              <li>Accessibility – The solution did allow me to connect from Outlook, Web Mail and from a smartphone.</li>
+              <li>Management – The solution should not require much management other than security patches, but it is multiple different packages which does increase the amount of work required.</li>
+              <li>Security – The solution provides Anti-Virus/Anti-Spam capability but does require more setup for other security features like SPF records.</li>
+              <li>Cost – The solution used all open source free software but it did end up costing more than Exchange Online due to the requirement of up-scaling the server to provide enough processing power.</li>
+            </ul>
+            In the end I have chosen to restore my backup prior to the changes and reverted my MX records as I will be renewing my Exchange Online subscription as I feel it is the better solution for my requirements but this project was a great learning experience.
+
+        </div><!-- /.blog-main -->
+        
+        <div id ="sidebar" class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About Gavin</h4>
+            <p>I am a PowerShell enthusiast.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Posts</h4>
+            <ol id="posts-list" class="list-unstyled">
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://github.com/GavinEke">GitHub</a></li>
+              <li><a href="https://twitter.com/GavinEke">Twitter</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer id="footer-hidden" class="blog-footer">
+      <p>&copy 2016 Gavin Eke.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+    <footer id="footer" class="blog-footer">
+      <p>&copy 2016 Gavin Eke.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+
+    <!-- Core JavaScript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/tether.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Custom Blog Script by Gavin Eke -->
+    <script src="/js/loadXMLData.js"></script>
+    <script src="/js/specialheader.js"></script>
+    <script src="/js/xmlposts.js"></script>
+  
+
+</body></html>

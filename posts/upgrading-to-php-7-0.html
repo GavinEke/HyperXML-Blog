@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.png">
 
-    <title>Gavin Eke | Home</title>
+    <title>Gavin Eke | Upgrading to PHP 7.0</title>
 
     <!-- Core CSS -->
     <link href="/css/tether.min.css" rel="stylesheet">
@@ -22,8 +22,9 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="nav blog-nav">
-          <a class="nav-link active" href="/">Home</a>
+          <a class="nav-link " href="/">Home</a>
           <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link active" href="#">Posts</a>
         </nav>
       </div>
     </div>
@@ -59,9 +60,30 @@
         <div id="blog-main" class="col-sm-8 blog-main">
 
             <noscript>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</noscript>
+            
+            A couple of days ago I upgraded the web server that hosts this blog to PHP 7.0 as I have known about the memory improvements since release but I wanted to wait until the package was more stable and supported before trying it for myself.
+
+            <img class="aligncenter size-full wp-image-113" src="/images/vps1.png" alt="vps1" width="710" height="382" />
+            <blockquote>Screenshot: 1 week view of resources usage (upgrade performed Saturday morning)</blockquote>
+            As seen in the above screenshot the upgrade was performed at the time the disk activity spiked but you can see a drop in memory used after the upgrade was performed.
+
+            Next, I will talk about the steps I took to upgrade to the new version but I would suggest to wait for version 7.1 before upgrading any production systems and always make sure to test before deploying.
+
+            <!--more-->1. Add repository for package
+            <pre class="lang:sh decode:true">sudo apt-get install software-properties-common language-pack-en-base
+            sudo LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php</pre>
+            2. Remove PHP5 and install PHP7.0
+            <pre class="lang:sh decode:true">sudo apt-get update
+            sudo apt-get --purge remove php.*/
+            sudo apt-get install php7.0 libapache2-mod-php7.0 php7.0-mysql php7.0-json php7.0-curl</pre>
+            3. Test
+            <pre class="lang:sh decode:true">php -v</pre>
+            The output of the command should return the version info of the currently installed PHP version. Once you confirm you are running version 7, perform all other testing to confirm the site is working.
+
+            &nbsp;
 
         </div><!-- /.blog-main -->
-
+        
         <div id ="sidebar" class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About Gavin</h4>
@@ -107,7 +129,7 @@
     <!-- Custom Blog Script by Gavin Eke -->
     <script src="/js/loadXMLData.js"></script>
     <script src="/js/specialheader.js"></script>
-    <script src="/js/xmlblog.js"></script>
+    <script src="/js/xmlposts.js"></script>
   
 
 </body></html>

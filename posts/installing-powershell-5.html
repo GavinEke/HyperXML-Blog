@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.png">
 
-    <title>Gavin Eke | Home</title>
+    <title>Gavin Eke | Installing PowerShell 5</title>
 
     <!-- Core CSS -->
     <link href="/css/tether.min.css" rel="stylesheet">
@@ -22,8 +22,9 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="nav blog-nav">
-          <a class="nav-link active" href="/">Home</a>
+          <a class="nav-link " href="/">Home</a>
           <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link active" href="#">Posts</a>
         </nav>
       </div>
     </div>
@@ -59,9 +60,42 @@
         <div id="blog-main" class="col-sm-8 blog-main">
 
             <noscript>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</noscript>
+            
+            If you don't know what PowerShell is, it is a command-line shell and scripting language from Microsoft based on the .NET Framework. PowerShell is not something new, in fact in November it will be 10 years since the stable release of PowerShell 1.0, and one of the first products to feature PowerShell was Microsoft Exchange 2007. PowerShell is now up to version 5 and the follow table shows the major features included in each version.
+            <table style="width: 100%;">
+            <tbody>
+            <tr>
+            <th>Version</th>
+            <th>Feature Highlight</th>
+            </tr>
+            <tr>
+            <td>1.0</td>
+            <td>Initial Release</td>
+            </tr>
+            <tr>
+            <td>2.0</td>
+            <td>PSRemoting</td>
+            </tr>
+            <tr>
+            <td>3.0</td>
+            <td>Workflows</td>
+            </tr>
+            <tr>
+            <td>4.0</td>
+            <td>DSC</td>
+            </tr>
+            <tr>
+            <td>5.0</td>
+            <td>Classes</td>
+            </tr>
+            </tbody>
+            </table>
+            <!--more-->
+
+            PowerShell 5 is pre-installed on Windows 10 but if you are running PowerShell 4 on Windows 7 SP1, Windows 8.1, Windows 2008 R2 or Windows Server 2012 R2 you can upgrade to PowerShell 5.0 by downloading Windows Management Framework (WMF) 5.0 from <a href="https://www.microsoft.com/en-us/download/details.aspx?id=50395" target="_blank">https://www.microsoft.com/en-us/download/details.aspx?id=50395</a> which includes PowerShell 5.0 but as always make sure you read the System Requirements and Install Instructions before upgrading.
 
         </div><!-- /.blog-main -->
-
+        
         <div id ="sidebar" class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About Gavin</h4>
@@ -107,7 +141,7 @@
     <!-- Custom Blog Script by Gavin Eke -->
     <script src="/js/loadXMLData.js"></script>
     <script src="/js/specialheader.js"></script>
-    <script src="/js/xmlblog.js"></script>
+    <script src="/js/xmlposts.js"></script>
   
 
 </body></html>

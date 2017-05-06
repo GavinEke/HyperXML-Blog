@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.png">
+
+    <title>Gavin Eke | Got a Raspberry Pi 2, now what do I do?</title>
+
+    <!-- Core CSS -->
+    <link href="/css/tether.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/blog.css" rel="stylesheet">
+    </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="/">Home</a>
+          <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link active" href="#">Posts</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="blog-header">
+      <div class="container">
+        <table border="0">
+            <tr>
+                <td><img src="/images/logo.png"></td>
+                <td>&nbsp&nbsp&nbsp</td>
+                <td><h1 class="blog-title">Gavin Eke</h1><p class="lead blog-description">Get-Command | Get-Random | Get-Help</p></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+    
+    <div class="special-header">
+      <div class="container">
+        <table border="0">
+            <tr>
+                <td><img class="logo" src="/images/logo.png"></td>
+                <td>&nbsp&nbsp&nbsp</td>
+                <td><br /><h2 class="special-blog-title">Gavin Eke</h2><p class="special-blog-description">Get-Command | Get-Random | Get-Help</p></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div id="blog-main" class="col-sm-8 blog-main">
+
+            <noscript>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</noscript>
+            
+            Raspberry Pi is a small, low-cost computer running an ARM Cortex-A7. The Raspberry Pi 2 costs $35 USD and is powerful enough to run almost anything your high-end smartphone can run. Raspberry Pi 2 can run a number of Operating Systems including Ubuntu which was the OS I choose to run the web server that hosts this page on.
+
+            The first thing to do when you purchase your Raspberry Pi is to decided what you will be actually using your Pi for, whether it be as a general desktop with a web browser and an office productivity suite or maybe you want to make your own instrument like the BeetBox as shown in the video below.
+
+            https://vimeo.com/55658574
+
+            <!--more-->
+
+            The project I decided I would like to make was a arcade machine allowing me to run all the games of my childhood on Nintendo. I started searching the internet to see if a similar project has already been done and I found <a title="The RetroPie Project" href="http://blog.petrockblock.com/retropie/" target="_blank">RetroPie</a> which was exactly what I was looking for it included multiple emulators such as Nintendo 64, Nintendo GameBoy, MAME and many others using a beautiful and simple front-end called <a title="EmulationStation" href="http://www.emulationstation.org/" target="_blank">EmulationStation</a>.
+
+            I followed the instruction on the RetroPie website and downloaded the RetroPie SD Image torrent and followed to write the downloaded image to my Micro SD card which would be used in my Raspberry Pi 2. I plugged my HDMI cable in from my TV, followed by my Network cable, followed by my gamepad I had bought off Ebay specifically for this project and finally I plugged my Micro-USB cable in and it instantly powered on and launched straight into EmulationStation. Once EmulationStation launched it detected my gamepad and I configured all the keys as required.
+            <blockquote>How do I add additional games?</blockquote>
+            It was time to add more games to my RetroPie, I plugged in a keyboard and pressed F4 to quit EmulationStation, this took me to the terminal and logon screen. I logged in using the following account:
+            <ul>
+              <li>Username - pi</li>
+              <li>Password - raspberry</li>
+            </ul>
+            Now that I had logged in it was to time to check for updates as I love up-to-date systems, so I ran <em><span style="text-decoration: underline;">sudo apt-get update</span></em> and <em><span style="text-decoration: underline;">sudo apt-get upgrade</span></em> commands. Once the update was complete I needed the IP address to be able to upload files to the device over the network, this can be found using the <span style="text-decoration: underline;"><em>ifconfig</em></span> command.
+
+            Using <a title="WinSCP" href="http://winscp.net/" target="_blank">WinSCP</a> from my main computer I connected to the Raspberry Pi using the IP address and uploaded the ROM files into their appropriate folders. Once the coping was complete I decided to reboot the system using sudo init 6 and the device launched back into EmulationStation and had recognized the games and displayed them under their console.
+
+            https://www.youtube.com/watch?v=AVQVmsFOclM
+
+            The entire project was less then $100 AUD based on the following costs.
+            <ul>
+              <li>Raspberry Pi 2 - $43</li>
+              <li>Enclosure - $10</li>
+              <li>MicroUSB PSU - $10</li>
+              <li>Micro SD - $10</li>
+              <li>USB Gamepad - $10</li>
+            </ul>
+            If you are planning to use the Raspberry Pi for another project I suggest to install Raspbian using <a title="Raspberry Pi - NOOBS" href="http://www.raspberrypi.org/help/noobs-setup/" target="_blank">NOOBS</a> or in the future you will be able to install Windows 10 on your Raspberry Pi 2 but for now back to playing Mario, Zelda and Pokemon.
+
+        </div><!-- /.blog-main -->
+        
+        <div id ="sidebar" class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About Gavin</h4>
+            <p>I am a PowerShell enthusiast.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Posts</h4>
+            <ol id="posts-list" class="list-unstyled">
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://github.com/GavinEke">GitHub</a></li>
+              <li><a href="https://twitter.com/GavinEke">Twitter</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer id="footer-hidden" class="blog-footer">
+      <p>&copy 2016 Gavin Eke.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+    <footer id="footer" class="blog-footer">
+      <p>&copy 2016 Gavin Eke.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+
+    <!-- Core JavaScript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/tether.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Custom Blog Script by Gavin Eke -->
+    <script src="/js/loadXMLData.js"></script>
+    <script src="/js/specialheader.js"></script>
+    <script src="/js/xmlposts.js"></script>
+  
+
+</body></html>

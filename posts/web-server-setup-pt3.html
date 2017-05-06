@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.png">
 
-    <title>Gavin Eke | Home</title>
+    <title>Gavin Eke | Web Server Setup (Part 3 – Security)</title>
 
     <!-- Core CSS -->
     <link href="/css/tether.min.css" rel="stylesheet">
@@ -22,8 +22,9 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="nav blog-nav">
-          <a class="nav-link active" href="/">Home</a>
+          <a class="nav-link " href="/">Home</a>
           <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link active" href="#">Posts</a>
         </nav>
       </div>
     </div>
@@ -59,9 +60,25 @@
         <div id="blog-main" class="col-sm-8 blog-main">
 
             <noscript>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</noscript>
+            
+            <a title="Web Server Setup (Part 2 – Installing and Configuring)" href="https://gavineke.com/posts/web-server-setup-pt2.html">Following on from Part 2 - Installing and Configuring</a>
+            <blockquote>How can I secure my website?</blockquote>
+            Security is one of the most important part in anything to do with computers and is often overlooked. The first step I do in almost all software installs is make sure I have applied the latest security updates to protect myself from known vulnerabilities, in Ubuntu this can be performed by using the <span style="text-decoration: underline;">sudo apt-get upgrade</span> and <span style="text-decoration: underline;">sudo apt-get update</span> commands with will download and install the latest patches to your system and in WordPress new versions are displayed in the notifications on the dashboard this includes plugins and themes as well as WordPress itself.
+
+            <!--more-->
+
+            Other then system updates I also looked at protecting against Man-in-the-Middle (MitM) attacks and zero day attacks. To protect against these sort of attacks I turned on HTTPS using a free certificate from CloudFlare which provides the visitor with end to end encryption and CloudFlare also mitigates against attacks from Spammers to SQL injections to DDOS attacks also another advantage of using CloudFlare is the use of their CDN which allows visitors faster access to my website by hosting static content in 30 servers worldwide providing better performance. The final item to protect my website and server was the use of firewalls by installing and enabling mod_security which is a web application firewall with rules and also configuring Binary Lane's firewall to block access to ports not required.
+
+            In summary of this security post, you should implement the following items to secure your website and server:
+            <ul>
+                <li>System Patches</li>
+                <li>CloudFlare</li>
+                <li>Firewall</li>
+            </ul>
+            This will help protect the system from a range of attacks and also this concludes the article on Web Server Setup, I hope you enjoyed it and feel free to leave feedback in the comments.
 
         </div><!-- /.blog-main -->
-
+        
         <div id ="sidebar" class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About Gavin</h4>
@@ -107,7 +124,8 @@
     <!-- Custom Blog Script by Gavin Eke -->
     <script src="/js/loadXMLData.js"></script>
     <script src="/js/specialheader.js"></script>
-    <script src="/js/xmlblog.js"></script>
+    <script src="/js/xmlposts.js"></script>
   
 
 </body></html>
+

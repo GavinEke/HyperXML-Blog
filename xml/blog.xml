@@ -1,116 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <BLOG>
 	<POST>
+		<TITLE>The battle of legitimate emails and spam</TITLE>
+		<DATE>September 5, 2016</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>the-battle-of-legitimate-emails-and-spam.html</CONTENT>
+	</POST>
+	<POST>
+		<TITLE>Upgrading to PHP 7.0</TITLE>
+		<DATE>June 14, 2016</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>upgrading-to-php-7-0.html</CONTENT>
+	</POST>
+	<POST>
+		<TITLE>PowerShell Database Class</TITLE>
+		<DATE>June 8, 2016</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>powershell-database-class.html</CONTENT>
+	</POST>
+	<POST>
+		<TITLE>Learning vSphere 6</TITLE>
+		<DATE>May 10, 2016</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>learning-vsphere-6.html</CONTENT>
+	</POST>
+	<POST>
+		<TITLE>Infrastructure Design</TITLE>
+		<DATE>May 3, 2016</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>infrastructure-design.html</CONTENT>
+	</POST>
+	<POST>
+		<TITLE>Installing PowerShell 5</TITLE>
+		<DATE>March 22, 2016</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>installing-powershell-5.html</CONTENT>
+	</POST>
+	<POST>
+		<TITLE>Mail Server Setup</TITLE>
+		<DATE>January 12, 2016</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>mail-server-setup.html</CONTENT>
+	</POST>
+	<POST>
+		<TITLE>European Holiday and Beyond</TITLE>
+		<DATE>October 12, 2015</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>european-holiday-and-beyond.html</CONTENT>
+	</POST>
+	<POST>
+		<TITLE>Website Updates</TITLE>
+		<DATE>April 26, 2015</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>website-updates.html</CONTENT>
+	</POST>
+	<POST>
+		<TITLE>Backup WordPress to Mega</TITLE>
+		<DATE>March 28, 2015</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>backup-wordpress-to-mega.html</CONTENT>
+	</POST>
+	<POST>
+		<TITLE>Fixing Computers when you can't reimage</TITLE>
+		<DATE>March 22, 2015</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>fixing-computers-when-you-cant-reimage.html</CONTENT>
+	</POST>
+	<POST>
 		<TITLE>Got a Raspberry Pi 2, now what do I do?</TITLE>
-		<DATE>January 1, 2016</DATE>
-		<AUTHOR>Gavin</AUTHOR>
-		<CONTENT><![CDATA[
-Raspberry Pi is a small, low-cost computer running an ARM Cortex-A7. The Raspberry Pi 2 costs $35 USD and is powerful enough to run almost anything your high-end smartphone can run. Raspberry Pi 2 can run a number of Operating Systems including Ubuntu which was the OS I choose to run the web server that hosts this page on.
-
-The first thing to do when you purchase your Raspberry Pi is to decided what you will be actually using your Pi for, whether it be as a general desktop with a web browser and an office productivity suite or maybe you want to make your own instrument like the BeetBox as shown in the video below.
-
-https://vimeo.com/55658574
-
-<!--more-->
-
-The project I decided I would like to make was a arcade machine allowing me to run all the games of my childhood on Nintendo. I started searching the internet to see if a similar project has already been done and I found <a title="The RetroPie Project" href="http://blog.petrockblock.com/retropie/" target="_blank">RetroPie</a> which was exactly what I was looking for it included multiple emulators such as Nintendo 64, Nintendo GameBoy, MAME and many others using a beautiful and simple front-end called <a title="EmulationStation" href="http://www.emulationstation.org/" target="_blank">EmulationStation</a>.
-
-I followed the instruction on the RetroPie website and downloaded the RetroPie SD Image torrent and followed to write the downloaded image to my Micro SD card which would be used in my Raspberry Pi 2. I plugged my HDMI cable in from my TV, followed by my Network cable, followed by my gamepad I had bought off Ebay specifically for this project and finally I plugged my Micro-USB cable in and it instantly powered on and launched straight into EmulationStation. Once EmulationStation launched it detected my gamepad and I configured all the keys as required.
-<blockquote>How do I add additional games?</blockquote>
-It was time to add more games to my RetroPie, I plugged in a keyboard and pressed F4 to quit EmulationStation, this took me to the terminal and logon screen. I logged in using the following account:
-<ul>
-	<li>Username - pi</li>
-	<li>Password - raspberry</li>
-</ul>
-Now that I had logged in it was to time to check for updates as I love up-to-date systems, so I ran <em><span style="text-decoration: underline;">sudo apt-get update</span></em> and <em><span style="text-decoration: underline;">sudo apt-get upgrade</span></em> commands. Once the update was complete I needed the IP address to be able to upload files to the device over the network, this can be found using the <span style="text-decoration: underline;"><em>ifconfig</em></span> command.
-
-Using <a title="WinSCP" href="http://winscp.net/" target="_blank">WinSCP</a> from my main computer I connected to the Raspberry Pi using the IP address and uploaded the ROM files into their appropriate folders. Once the coping was complete I decided to reboot the system using sudo init 6 and the device launched back into EmulationStation and had recognized the games and displayed them under their console.
-
-https://www.youtube.com/watch?v=AVQVmsFOclM
-
-The entire project was less then $100 AUD based on the following costs.
-<ul>
-	<li>Raspberry Pi 2 - $43</li>
-	<li>Enclosure - $10</li>
-	<li>MicroUSB PSU - $10</li>
-	<li>Micro SD - $10</li>
-	<li>USB Gamepad - $10</li>
-</ul>
-If you are planning to use the Raspberry Pi for another project I suggest to install Raspbian using <a title="Raspberry Pi - NOOBS" href="http://www.raspberrypi.org/help/noobs-setup/" target="_blank">NOOBS</a> or in the future you will be able to install Windows 10 on your Raspberry Pi 2 but for now back to playing Mario, Zelda and Pokemon.
-		]]></CONTENT>
+		<DATE>March 15, 2015</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>got-a-raspberry-pi-2-now-what-do-i-do.html</CONTENT>
 	</POST>
 	<POST>
 		<TITLE>Web Server Setup (Part 3 – Security)</TITLE>
-		<DATE>January 1, 2016</DATE>
-		<AUTHOR>Gavin</AUTHOR>
-		<CONTENT><![CDATA[
-<a title="Web Server Setup (Part 2 – Installing and Configuring)" href="https://gavineke.com/2015/03/08/web-server-setup-pt2/">Following on from Part 2 - Installing and Configuring</a>
-<blockquote>How can I secure my website?</blockquote>
-Security is one of the most important part in anything to do with computers and is often overlooked. The first step I do in almost all software installs is make sure I have applied the latest security updates to protect myself from known vulnerabilities, in Ubuntu this can be performed by using the <span style="text-decoration: underline;">sudo apt-get upgrade</span> and <span style="text-decoration: underline;">sudo apt-get update</span> commands with will download and install the latest patches to your system and in WordPress new versions are displayed in the notifications on the dashboard this includes plugins and themes as well as WordPress itself.
-
-<!--more-->
-
-Other then system updates I also looked at protecting against Man-in-the-Middle (MitM) attacks and zero day attacks. To protect against these sort of attacks I turned on HTTPS using a free certificate from CloudFlare which provides the visitor with end to end encryption and CloudFlare also mitigates against attacks from Spammers to SQL injections to DDOS attacks also another advantage of using CloudFlare is the use of their CDN which allows visitors faster access to my website by hosting static content in 30 servers worldwide providing better performance. The final item to protect my website and server was the use of firewalls by installing and enabling mod_security which is a web application firewall with rules and also configuring Binary Lane's firewall to block access to ports not required.
-
-In summary of this security post, you should implement the following items to secure your website and server:
-<ul>
-	<li>System Patches</li>
-	<li>CloudFlare</li>
-	<li>Firewall</li>
-</ul>
-This will help protect the system from a range of attacks and also this concludes the article on Web Server Setup, I hope you enjoyed it and feel free to leave feedback in the comments.
-		]]></CONTENT>
+		<DATE>March 8, 2015</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>web-server-setup-pt3.html</CONTENT>
 	</POST>
 	<POST>
 		<TITLE>Web Server Setup (Part 2 – Installing and Configuring)</TITLE>
-		<DATE>January 1, 2016</DATE>
-		<AUTHOR>Gavin</AUTHOR>
-		<CONTENT><![CDATA[
-<a title="Web Server Setup (Part 1 – Planning)" href="https://gavineke.com/2015/03/08/web-server-setup-pt1/">Following on from Part 1 - Planning.</a>
-<blockquote>Logging on as root for the first time...</blockquote>
-The first thing to know if you know nothing about Linux is the Administrator account is called root but it is not a good idea to use this account unless absolutely necessary due to the power this account has. The first thing I did and I suggest everyone to do is create a user account for yourself that you will log onto to do everything. You can do this by running the <span style="text-decoration: underline;">adduser</span> command.
-
-Upon running this command you will be asked what password you would like yo user for this account and other information about the account such as Full Name of the user. Once we have created the account we want to use the <span style="text-decoration: underline;">visudo</span> command to add the new user account we just created to be able to use the sudo command. The sudo command allows a user to run other commands that require evaluated (root) privileges. Once the user has been created and has sudo access, it is recommended to logoff by type <span style="text-decoration: underline;">exit</span> at the terminal and logging on as the user you just created.
-
-<!--more-->
-<h3>Installing the services.</h3>
-Once you have logged in as the user account you created for yourself we need to install the services to run the website. The first thing we will install is the LAMP server package which the name LAMP comes from <span style="text-decoration: underline;">L</span>inux <span style="text-decoration: underline;">A</span>pache <span style="text-decoration: underline;">M</span>ySQL <span style="text-decoration: underline;">P</span>HP the 3 pieces of software it installs Apache HTTP web server, MySQL Database and the PHP Server side language all of which WordPress uses to host its files. To install this package we run the following command - <span style="text-decoration: underline;">sudo apt-get install lamp-server^</span> after installing this and testing it worked by going to the website and which should bring up the default webpage I decided to also install Postfix and vsftpd as I thought I would like the ability to send emails and also easily upload and download files. Postfix is an MTA that uses SMTP to send and recieve emails and vsftpd is a FTP server so that I can easily change the files on the website from a remote computer. We install both of these by typing the following command - <span style="text-decoration: underline;">sudo apt-get install postfix vsftpd</span>
-
-Once we have everything installed we need to configure the server by modifying configuration files. I suggest using the vi text editor but there is a learning curve if you have not used vi before an easier text editor to use is nano, you can decided which text editor is best for you. the configuration can be tricky to get the services working how you like them by there are many great articles out there with in depth instructions if you Google them. The first link of Google is usually going to be the best answer but look for results from the following 3 sites as they appear to be the most helpful in my opinion.
-<ul>
-	<li><a href="https://help.ubuntu.com/">https://help.ubuntu.com/</a></li>
-	<li><a href="http://askubuntu.com/">http://askubuntu.com/</a></li>
-	<li><a href="https://www.digitalocean.com/community/">https://www.digitalocean.com/community/</a></li>
-</ul>
-<a title="Web Server Setup (Part 3 – Security)" href="https://gavineke.com/2015/03/08/web-server-setup-pt3/">Continue to Part 3 - Security</a>
-		]]></CONTENT>
+		<DATE>March 8, 2015</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>web-server-setup-pt2.html</CONTENT>
 	</POST>
 	<POST>
 		<TITLE>Web Server Setup (Part 1 – Planning)</TITLE>
-		<DATE>January 1, 2016</DATE>
-		<AUTHOR>Gavin</AUTHOR>
-		<CONTENT><![CDATA[
-<blockquote>How should I host my website?</blockquote>
-This is the first question I asked myself when deciding to make my technology blog. There were a few decisions to make like should I create my own CMS or using an existing CMS such as WordPress or Drupal, do I purchase a shared cPanel hosting plan or do I get a dedicated VPS and setup the web server myself, do I run IIS, Apache, Nginx for my web server. I had to decide what was going to be the best for my budget and expectations of performance.
-
-<!--more-->
-
-The decisions I made were to use WordPress as my CMS since I have previous experience using it on other websites I created and maintain, and WordPress allows me to do everything I need to do there is no need for me to reinvent the wheel designing and writing the code, the previous websites I have made have always been on shared cPanel hosting which is very cheap and easy to use but I have not always liked the reliability of this due to the number of downtime for maintenance and limited performance when multiple people are connecting to and using the website so being a sysadmin I felt it was best to purchase a dedicated VPS and run the server myself as I will be in control of performance, finally the choice of which web server package to run in my case as I was trying to get performance on a limited budget this ruled IIS out for me since this would require to run on a Windows Server which requires licencing and uses more resources such as RAM then a system running on Linux, in the end the decision ended up being Apache as the Apache HTTP Server is used to server more then 50% off all websites globally and has excellent documentation.
-<h3><em><strong>Deciding a VPS.</strong></em></h3>
-Comparing different cloud services can be difficult as there is so many different offerings out there including Amazon Web Services and Microsoft Azure which both offer a great service but were outside the budget for my requirements.
-
-The 2 requirements I had was hosting was under $20 AUD and that the servers were hosted in Australia, this lead me to using Google to search for companies that offered what I needed and I found 3 companies that were very well priced (Digital Ocean, Linode and Binary Lane) but only one of them had Australian hosting and as such I decided to purchase hosting through Binary Lane.
-
-The service I went with through Binary Lane is a cloud server with 4 CPUs, 2GB Memory, 40GB SSD Storage and 600GB Internet Transfer each month. The price is $25 AUD/month which was more then I originally planned on speeding but I felt for the performance and the management console Binary Lane provides it is worth spending a bit extra.
-<h3><em><strong>What OS should I use?</strong></em></h3>
-After previously deciding on using Linux I needed to choose which distro I would use, I have previously done the Red Hat Academy coursework at TAFE which made me think using CentOS was going to be the best option but I ended up installing Ubuntu Server for 2 reasons:
-<ol>
-	<li>The built-in apt-get package manager seems to have all the packages I desire without the need of adding repo's as was required a number of times using the yum package manager in RHEL</li>
-	<li>The amount of articles and documentation was a big plus as I knew I should be able to find the answer to any problems due to the large helpful Ubuntu community.</li>
-</ol>
-That ended my planning stage as the decisions had been made and next I needed to install and configure the server and website.
-
-<a title="Web Server Setup (Part 2 – Installing and Configuring)" href="https://gavineke.com/2015/03/08/web-server-setup-pt2/">Continue to Part 2 - Installing and Configuring</a>
-		]]></CONTENT>
+		<DATE>March 8, 2015</DATE>
+		<AUTHOR>Gavin Eke</AUTHOR>
+		<CONTENT>web-server-setup-pt1.html</CONTENT>
 	</POST>
 </BLOG>

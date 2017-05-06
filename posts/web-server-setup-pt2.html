@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.png">
+
+    <title>Gavin Eke | Web Server Setup (Part 2 – Installing and Configuring)</title>
+
+    <!-- Core CSS -->
+    <link href="/css/tether.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/blog.css" rel="stylesheet">
+    </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="/">Home</a>
+          <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link active" href="#">Posts</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="blog-header">
+      <div class="container">
+        <table border="0">
+            <tr>
+                <td><img src="/images/logo.png"></td>
+                <td>&nbsp&nbsp&nbsp</td>
+                <td><h1 class="blog-title">Gavin Eke</h1><p class="lead blog-description">Get-Command | Get-Random | Get-Help</p></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+    
+    <div class="special-header">
+      <div class="container">
+        <table border="0">
+            <tr>
+                <td><img class="logo" src="/images/logo.png"></td>
+                <td>&nbsp&nbsp&nbsp</td>
+                <td><br /><h2 class="special-blog-title">Gavin Eke</h2><p class="special-blog-description">Get-Command | Get-Random | Get-Help</p></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div id="blog-main" class="col-sm-8 blog-main">
+
+            <noscript>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</noscript>
+            
+            <a title="Web Server Setup (Part 1 – Planning)" href="https://gavineke.com/posts/web-server-setup-pt1.html">Following on from Part 1 - Planning.</a>
+            <blockquote>Logging on as root for the first time...</blockquote>
+            The first thing to know if you know nothing about Linux is the Administrator account is called root but it is not a good idea to use this account unless absolutely necessary due to the power this account has. The first thing I did and I suggest everyone to do is create a user account for yourself that you will log onto to do everything. You can do this by running the <span style="text-decoration: underline;">adduser</span> command.
+
+            Upon running this command you will be asked what password you would like yo user for this account and other information about the account such as Full Name of the user. Once we have created the account we want to use the <span style="text-decoration: underline;">visudo</span> command to add the new user account we just created to be able to use the sudo command. The sudo command allows a user to run other commands that require evaluated (root) privileges. Once the user has been created and has sudo access, it is recommended to logoff by type <span style="text-decoration: underline;">exit</span> at the terminal and logging on as the user you just created.
+
+            <!--more-->
+            <h3>Installing the services.</h3>
+            Once you have logged in as the user account you created for yourself we need to install the services to run the website. The first thing we will install is the LAMP server package which the name LAMP comes from <span style="text-decoration: underline;">L</span>inux <span style="text-decoration: underline;">A</span>pache <span style="text-decoration: underline;">M</span>ySQL <span style="text-decoration: underline;">P</span>HP the 3 pieces of software it installs Apache HTTP web server, MySQL Database and the PHP Server side language all of which WordPress uses to host its files. To install this package we run the following command - <span style="text-decoration: underline;">sudo apt-get install lamp-server^</span> after installing this and testing it worked by going to the website and which should bring up the default webpage I decided to also install Postfix and vsftpd as I thought I would like the ability to send emails and also easily upload and download files. Postfix is an MTA that uses SMTP to send and recieve emails and vsftpd is a FTP server so that I can easily change the files on the website from a remote computer. We install both of these by typing the following command - <span style="text-decoration: underline;">sudo apt-get install postfix vsftpd</span>
+
+            Once we have everything installed we need to configure the server by modifying configuration files. I suggest using the vi text editor but there is a learning curve if you have not used vi before an easier text editor to use is nano, you can decided which text editor is best for you. the configuration can be tricky to get the services working how you like them by there are many great articles out there with in depth instructions if you Google them. The first link of Google is usually going to be the best answer but look for results from the following 3 sites as they appear to be the most helpful in my opinion.
+            <ul>
+                <li><a href="https://help.ubuntu.com/">https://help.ubuntu.com/</a></li>
+                <li><a href="http://askubuntu.com/">http://askubuntu.com/</a></li>
+                <li><a href="https://www.digitalocean.com/community/">https://www.digitalocean.com/community/</a></li>
+            </ul>
+            <a title="Web Server Setup (Part 3 – Security)" href="https://gavineke.com/posts/web-server-setup-pt3.html">Continue to Part 3 - Security</a>
+
+        </div><!-- /.blog-main -->
+        
+        <div id ="sidebar" class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About Gavin</h4>
+            <p>I am a PowerShell enthusiast.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Posts</h4>
+            <ol id="posts-list" class="list-unstyled">
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://github.com/GavinEke">GitHub</a></li>
+              <li><a href="https://twitter.com/GavinEke">Twitter</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer id="footer-hidden" class="blog-footer">
+      <p>&copy 2016 Gavin Eke.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+    <footer id="footer" class="blog-footer">
+      <p>&copy 2016 Gavin Eke.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+
+    <!-- Core JavaScript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/tether.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Custom Blog Script by Gavin Eke -->
+    <script src="/js/loadXMLData.js"></script>
+    <script src="/js/specialheader.js"></script>
+    <script src="/js/xmlposts.js"></script>
+  
+
+</body></html>

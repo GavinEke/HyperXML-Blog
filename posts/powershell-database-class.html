@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="/favicon.png">
 
-    <title>Gavin Eke | Home</title>
+    <title>Gavin Eke | PowerShell Database Class</title>
 
     <!-- Core CSS -->
     <link href="/css/tether.min.css" rel="stylesheet">
@@ -22,8 +22,9 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="nav blog-nav">
-          <a class="nav-link active" href="/">Home</a>
+          <a class="nav-link " href="/">Home</a>
           <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link active" href="#">Posts</a>
         </nav>
       </div>
     </div>
@@ -59,9 +60,46 @@
         <div id="blog-main" class="col-sm-8 blog-main">
 
             <noscript>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</noscript>
+            
+            So a couple of days ago I wrote my first class object in PowerShell 5 and just wanted to talk about it. The first thing is class objects are new to PowerShell 5 and cannot be used in prior versions of PowerShell and they differ from PS custom objects as you can create methods in addition to defining properties. The class I have made is called Database and has 3 methods (Connect, Disconnect and Query) which does exactly what they sound like they will do. You can view the code and watch a video explaining a bit more about how the class is used below.
+            <pre class="toolbar-overlay:false lang:ps decode:true " title="Database Class"># Database Class by @GavinEke
+            Class Database {
+                [string]$DataSource = ".SQLEXPRESS"
+                [string]$Database = "PowerShell"
+                [string]$ConnectionString = "Data Source=$($this.DataSource); Integrated Security=SSPI; Initial Catalog=$($this.Database)"
+                $SQLConnection
+                $SQLCommand
+                $Output
+
+                Connect () {
+                    $this.SQLConnection = New-Object System.Data.SqlClient.SqlConnection
+                    $this.SQLConnection.ConnectionString = $this.ConnectionString
+                    $this.SQLConnection.Open()
+                    $this.SQLCommand = New-Object System.Data.SqlClient.SqlCommand
+                    $this.SQLCommand.Connection = $this.SQLConnection
+                }
+
+                Disconnect () {
+                    $this.SQLConnection.Close()
+                }
+
+                Insert ($data) {
+                    $this.SQLCommand.CommandText = $data
+                    $this.SQLCommand.ExecutenOnQuery()
+                }
+
+                Select ($data) {
+                    $this.SQLCommand.CommandText = $data
+                    $Adapter = New-Object System.Data.SqlClient.SqlDataAdapter $this.SQLCommand
+                    $Dataset = New-Object System.Data.DataSet
+                    $Adapter.Fill($DataSet)
+                    $this.Output = $Dataset.Tables
+                }
+            }</pre>
+            https://www.youtube.com/watch?v=Buq1R2NZQzI
 
         </div><!-- /.blog-main -->
-
+        
         <div id ="sidebar" class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About Gavin</h4>
@@ -107,7 +145,7 @@
     <!-- Custom Blog Script by Gavin Eke -->
     <script src="/js/loadXMLData.js"></script>
     <script src="/js/specialheader.js"></script>
-    <script src="/js/xmlblog.js"></script>
+    <script src="/js/xmlposts.js"></script>
   
 
 </body></html>

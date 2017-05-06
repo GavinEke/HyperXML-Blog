@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/favicon.png">
+
+    <title>Gavin Eke | Web Server Setup (Part 1 - Planning)</title>
+
+    <!-- Core CSS -->
+    <link href="/css/tether.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="/css/blog.css" rel="stylesheet">
+    </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="/">Home</a>
+          <a class="nav-link" href="/about.html">About</a>
+          <a class="nav-link active" href="#">Posts</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="blog-header">
+      <div class="container">
+        <table border="0">
+            <tr>
+                <td><img src="/images/logo.png"></td>
+                <td>&nbsp&nbsp&nbsp</td>
+                <td><h1 class="blog-title">Gavin Eke</h1><p class="lead blog-description">Get-Command | Get-Random | Get-Help</p></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+    
+    <div class="special-header">
+      <div class="container">
+        <table border="0">
+            <tr>
+                <td><img class="logo" src="/images/logo.png"></td>
+                <td>&nbsp&nbsp&nbsp</td>
+                <td><br /><h2 class="special-blog-title">Gavin Eke</h2><p class="special-blog-description">Get-Command | Get-Random | Get-Help</p></td>
+            </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row">
+
+        <div id="blog-main" class="col-sm-8 blog-main">
+
+            <noscript>For full functionality of this site it is necessary to enable JavaScript. Here are the <a href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.</noscript>
+            
+            <blockquote>How should I host my website?</blockquote>
+            This is the first question I asked myself when deciding to make my technology blog. There were a few decisions to make like should I create my own CMS or using an existing CMS such as WordPress or Drupal, do I purchase a shared cPanel hosting plan or do I get a dedicated VPS and setup the web server myself, do I run IIS, Apache, Nginx for my web server. I had to decide what was going to be the best for my budget and expectations of performance.
+
+            <!--more-->
+
+            The decisions I made were to use WordPress as my CMS since I have previous experience using it on other websites I created and maintain, and WordPress allows me to do everything I need to do there is no need for me to reinvent the wheel designing and writing the code, the previous websites I have made have always been on shared cPanel hosting which is very cheap and easy to use but I have not always liked the reliability of this due to the number of downtime for maintenance and limited performance when multiple people are connecting to and using the website so being a sysadmin I felt it was best to purchase a dedicated VPS and run the server myself as I will be in control of performance, finally the choice of which web server package to run in my case as I was trying to get performance on a limited budget this ruled IIS out for me since this would require to run on a Windows Server which requires licencing and uses more resources such as RAM then a system running on Linux, in the end the decision ended up being Apache as the Apache HTTP Server is used to server more then 50% off all websites globally and has excellent documentation.
+            <h3><em><strong>Deciding a VPS.</strong></em></h3>
+            Comparing different cloud services can be difficult as there is so many different offerings out there including Amazon Web Services and Microsoft Azure which both offer a great service but were outside the budget for my requirements.
+
+            The 2 requirements I had was hosting was under $20 AUD and that the servers were hosted in Australia, this lead me to using Google to search for companies that offered what I needed and I found 3 companies that were very well priced (Digital Ocean, Linode and Binary Lane) but only one of them had Australian hosting and as such I decided to purchase hosting through Binary Lane.
+
+            The service I went with through Binary Lane is a cloud server with 4 CPUs, 2GB Memory, 40GB SSD Storage and 600GB Internet Transfer each month. The price is $25 AUD/month which was more then I originally planned on speeding but I felt for the performance and the management console Binary Lane provides it is worth spending a bit extra.
+            <h3><em><strong>What OS should I use?</strong></em></h3>
+            After previously deciding on using Linux I needed to choose which distro I would use, I have previously done the Red Hat Academy coursework at TAFE which made me think using CentOS was going to be the best option but I ended up installing Ubuntu Server for 2 reasons:
+            <ol>
+                <li>The built-in apt-get package manager seems to have all the packages I desire without the need of adding repo's as was required a number of times using the yum package manager in RHEL</li>
+                <li>The amount of articles and documentation was a big plus as I knew I should be able to find the answer to any problems due to the large helpful Ubuntu community.</li>
+            </ol>
+            That ended my planning stage as the decisions had been made and next I needed to install and configure the server and website.
+
+            <a title="Web Server Setup (Part 2 – Installing and Configuring)" href="https://gavineke.com/posts/web-server-setup-pt2.html">Continue to Part 2 - Installing and Configuring</a>
+
+        </div><!-- /.blog-main -->
+        
+        <div id ="sidebar" class="col-sm-3 col-sm-offset-1 blog-sidebar">
+          <div class="sidebar-module sidebar-module-inset">
+            <h4>About Gavin</h4>
+            <p>I am a PowerShell enthusiast.</p>
+          </div>
+          <div class="sidebar-module">
+            <h4>Posts</h4>
+            <ol id="posts-list" class="list-unstyled">
+            </ol>
+          </div>
+          <div class="sidebar-module">
+            <h4>Elsewhere</h4>
+            <ol class="list-unstyled">
+              <li><a href="https://github.com/GavinEke">GitHub</a></li>
+              <li><a href="https://twitter.com/GavinEke">Twitter</a></li>
+            </ol>
+          </div>
+        </div><!-- /.blog-sidebar -->
+
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer id="footer-hidden" class="blog-footer">
+      <p>&copy 2016 Gavin Eke.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+    <footer id="footer" class="blog-footer">
+      <p>&copy 2016 Gavin Eke.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p>
+    </footer>
+
+
+    <!-- Core JavaScript -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/tether.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <!-- Custom Blog Script by Gavin Eke -->
+    <script src="/js/loadXMLData.js"></script>
+    <script src="/js/specialheader.js"></script>
+    <script src="/js/xmlposts.js"></script>
+  
+
+</body></html>
