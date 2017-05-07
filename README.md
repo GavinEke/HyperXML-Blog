@@ -14,4 +14,6 @@ A blog using the resources avalible to GitHub Pages. Since there is no PHP/MySQL
 * It is not scalable
 * No SEO
 
+---
+
 Demo Site: https://gavineke.net.au
