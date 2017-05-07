@@ -16,4 +16,4 @@ A blog using the resources avalible to GitHub Pages. Since there is no PHP/MySQL
 
 ---
 
-Demo Site: https://gavineke.net.au
+Demo Site: http://gavineke.net.au
