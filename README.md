@@ -13,7 +13,3 @@ A blog using the resources avalible to GitHub Pages. Since there is no PHP/MySQL
 * Client requires Javascript enabled
 * It is not scalable
 * No SEO
-
----
-
-Demo Site: http://gavineke.net.au
